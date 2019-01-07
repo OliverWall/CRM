@@ -25,6 +25,8 @@ const categoryRoutes = require('./routes/category');
 const orderRoutes = require('./routes/order');
 const positionRoutes = require('./routes/position');
 
+app.use('/uploads', express.static('uploads'));
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
