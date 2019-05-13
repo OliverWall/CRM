@@ -9,14 +9,15 @@ import {RegistrationPageComponent} from "./registration-page/registration-page.c
 
 const routes: Routes = [
   {
-    path: 'auth', component: AuthComponent, children: [
+    path: '', component: AuthComponent, children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
       {path: 'login', component: LoginPageComponent},
-      {path: 'reg', component: RegistrationPageComponent}
+      {path: 'registration', component: RegistrationPageComponent}
     ]
   },
   {
     path: 'site', component: SiteComponent
-  },
+  }
 ];
 
 @NgModule({
