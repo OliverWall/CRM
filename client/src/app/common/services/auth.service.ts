@@ -1,9 +1,9 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs/internal/Observable";
-import {tap} from "rxjs/operators";
+import {Observable} from 'rxjs/internal/Observable';
+import {tap} from 'rxjs/operators';
 
-import {User} from "../interfaces/user";
+import {User} from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +23,11 @@ export class AuthService {
           localStorage.setItem('token', token);
           this.setToken(token);
         })
-      )
+      );
   }
 
-  register() {
-
+  register(user: User) {
+    return this.http.post<any>('/api/auth/register', user);
   }
 
   setToken(token: string) {

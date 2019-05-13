@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {Subscription} from "rxjs/internal/Subscription";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Params, Router} from '@angular/router';
+import {Subscription} from 'rxjs/internal/Subscription';
 
-import {AuthService} from "../common/services/auth.service";
+import {AuthService} from '../common/services/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -29,17 +29,18 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     });
 
     this.route.queryParams.subscribe((params: Params) => {
-      if(params['registered']) {
+      if (params['registered']) {
         // Теперь Вы можете войти в систему используя свои данные
-      } else if(params['accessDenied']) {
+        console.log('registered');
+      } else if (params['accessDenied']) {
         // Вы должны авторизоваться
       }
-    })
+    });
   }
 
   ngOnDestroy() {
-    if(this.authSub) {
-      this.authSub.unsubscribe()
+    if (this.authSub) {
+      this.authSub.unsubscribe();
     }
   }
 
@@ -50,9 +51,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       next: () => this.router.navigate(['/registration']),
       error: err => {
         this.form.enable();
-        console.warn(err)
+        console.warn(err);
       }
-    })
+    });
   }
-
 }
