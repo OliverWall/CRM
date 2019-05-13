@@ -34,13 +34,18 @@ export class RegistrationPageComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.form.disable();
+
     this.regSub = this.authService.register(this.form.value).subscribe({
       next: () => {
-        this.router.navigate(['login'], {queryParams: {registered: true}});
+        this.router.navigate(['login'], {
+          queryParams:
+            {registered: true}
+        });
       },
       error: err => {
         console.log(err);
-        this.regSub.unsubscribe();
+        this.form.enable();
       }
     });
   }

@@ -27,7 +27,7 @@ export class AuthService {
   }
 
   register(user: User) {
-    return this.http.post<any>('/api/auth/register', user);
+    return this.http.post<User>('/api/auth/register', user);
   }
 
   setToken(token: string) {
