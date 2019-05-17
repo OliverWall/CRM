@@ -13,7 +13,6 @@ export class AuthService {
   private token = null;
 
   constructor(private http: HttpClient) {
-
   }
 
   login(user: User): Observable<{token: string}> {

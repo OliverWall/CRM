@@ -4,6 +4,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs/internal/Subscription';
 
 import {AuthService} from '../common/services/auth.service';
+import {MaterialService} from '../common/services/material.service';
 
 @Component({
   selector: 'app-login-page',
@@ -30,10 +31,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
 
     this.route.queryParams.subscribe((params: Params) => {
       if (params['registered']) {
-        // Теперь Вы можете войти в систему используя свои данные
-        console.log('registered');
+        MaterialService.toast('Теперь Вы можете войти в систему используя свои данные');
       } else if (params['accessDenied']) {
-        // Вы должны авторизоваться
+        MaterialService.toast('Вы должны авторизоваться');
       }
     });
   }
@@ -50,8 +50,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     this.authSub = this.authService.login(this.form.value).subscribe({
       next: () => this.router.navigate(['/site/overview']),
       error: err => {
+        MaterialService.toast(err.error.message);
         this.form.enable();
-        console.warn(err);
       }
     });
   }
