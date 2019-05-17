@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-site',
@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteComponent implements OnInit {
 
-  constructor() { }
+  routes = [
+    {url: 'overview', name: 'Обзор'},
+    {url: 'analytics', name: 'Аналитика'},
+    {url: 'order', name: 'История'},
+    {url: 'position', name: 'Добавить заказ'},
+    {url: 'category', name: 'Ассортимент'}
+  ];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
