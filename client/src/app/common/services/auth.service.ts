@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/internal/Observable';
 import {tap} from 'rxjs/operators';
 
 import {User} from '../interfaces/user';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class AuthService {
 
   private token = null;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   login(user: User): Observable<{token: string}> {
@@ -44,5 +45,10 @@ export class AuthService {
   logout() {
     this.setToken(null);
     localStorage.clear();
+    this.router.navigate(['login'], {
+      queryParams: {
+        logout: true
+      }
+    })
   }
 }

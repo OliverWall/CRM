@@ -24,6 +24,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['site/overview'])
+    }
+
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
@@ -34,6 +39,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         MaterialService.toast('Теперь Вы можете войти в систему используя свои данные');
       } else if (params['accessDenied']) {
         MaterialService.toast('Вы должны авторизоваться');
+      } else if (params['logout']) {
+        MaterialService.toast('Вы вышли из системы');
       }
     });
   }
