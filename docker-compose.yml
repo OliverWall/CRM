@@ -17,7 +17,7 @@ services:
     tty: true
 
   web-server:
-    image: nginx
+    image: nginx:1.16.0-alpine
     restart: always
     volumes:
       - front-volume:/usr/share/nginx/html
