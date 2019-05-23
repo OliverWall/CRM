@@ -11,9 +11,9 @@ export class SiteComponent implements OnInit {
   routes = [
     {url: 'overview', name: 'Обзор'},
     {url: 'analytics', name: 'Аналитика'},
-    {url: 'order', name: 'История'},
-    {url: 'position', name: 'Добавить заказ'},
-    {url: 'category', name: 'Ассортимент'}
+    {url: 'history', name: 'История'},
+    {url: 'order', name: 'Добавить заказ'},
+    {url: 'categories', name: 'Ассортимент'}
   ];
 
   constructor(
