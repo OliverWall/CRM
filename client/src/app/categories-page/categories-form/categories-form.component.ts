@@ -104,13 +104,17 @@ export class CategoriesFormComponent implements OnInit {
   }
 
   deleteCategory() {
-    this.categoriesService.delete(this.category._id)
-      .subscribe(
-        (res) => {
-          MaterialService.toast(res.message);
-          this.router.navigate(['/site/categories'])
-        },
-        error =>  MaterialService.toast(error.error.message)
-      )
+    const decision = window.confirm(`Вы уверены, что хотите удалить категорию ${this.category.name}?`);
+
+    if (decision) {
+      this.categoriesService.delete(this.category._id)
+        .subscribe(
+          (res) => {
+            MaterialService.toast(res.message);
+            this.router.navigate(['/site/categories']);
+          },
+          error => MaterialService.toast(error.error.message)
+        );
+    }
   }
 }
