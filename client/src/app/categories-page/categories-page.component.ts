@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs';
+
 import {CategoriesService} from '../common/services/categories.service';
 import {Category} from '../common/interfaces/category';
 
@@ -9,15 +11,13 @@ import {Category} from '../common/interfaces/category';
 })
 export class CategoriesPageComponent implements OnInit {
 
-  categories: Category[] = [];
+  categories$: Observable<Category[]>;
 
   constructor(private categoriesService: CategoriesService) {
   }
 
   ngOnInit() {
-    this.categoriesService.getAll().subscribe(categories => {
-      this.categories = categories;
-    });
+    this.categories$ = this.categoriesService.getAll();
   }
 
 }

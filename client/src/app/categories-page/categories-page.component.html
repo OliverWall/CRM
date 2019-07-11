@@ -1,13 +1,21 @@
 <div class="page-title">
   <h4>Категории</h4>
-  <button class="waves-effect waves-light btn grey darken-1">Добавить категорию</button>
+  <button class="waves-effect waves-light btn grey darken-1"
+          routerLink="new"
+  >
+    Добавить категорию
+  </button>
 </div>
 
-<div class="row">
+<div class="row"
+     *ngIf="categories$ | async as categories; else loader">
   <div class="col s12">
-    <div class="collection">
-      <a routerLink=""
-         class="collection-item"
+
+    <div class="collection"
+         *ngIf="categories.length !== 0; else empty"
+    >
+      <a class="collection-item"
+         routerLink="{{category._id}}"
          *ngFor="let category of categories"
       >
         {{category.name}}
@@ -15,3 +23,13 @@
     </div>
   </div>
 </div>
+
+<ng-template #empty>
+  <div class="center">
+    У вас нет ни одной категории
+  </div>
+</ng-template>
+
+<ng-template #loader>
+  <app-loader></app-loader>
+</ng-template>
